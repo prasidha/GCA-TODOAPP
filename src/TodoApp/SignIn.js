@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn({setIsLoggedIn}) {
   const classes = useStyles();
   const[email,setEmail] = useState()
   const[password,setPassword] =useState()
@@ -65,6 +65,7 @@ export default function SignIn() {
     auth 
         .signInWithEmailAndPassword(email,password)
         .then((auth) =>{
+          setIsLoggedIn(true)
             history.push('/todo')
         })
         .catch(error => setError(error.message))
@@ -78,6 +79,7 @@ export default function SignIn() {
             auth 
                 .createUserWithEmailAndPassword(email,password)
                 .then((auth) =>{
+                   setIsLoggedIn(true)
                     history.push('/todo')
                 })
                 .catch(error => setError(error.message))

@@ -29,7 +29,7 @@ function TodoCard({todo,id,onUpdate}) {
        db.collection('todos').doc(todo.id).set({
         todo:updateText,
         Date:updateDate,
-        timestamp:Date.now()
+        timestamp:new Date()
      
 
      },{merge:true})

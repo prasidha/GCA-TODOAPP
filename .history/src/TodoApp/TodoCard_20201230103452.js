@@ -29,7 +29,7 @@ function TodoCard({todo,id,onUpdate}) {
        db.collection('todos').doc(todo.id).set({
         todo:updateText,
         Date:updateDate,
-        timestamp:Date.now()
+        timestamp:new Date()
      
 
      },{merge:true})
@@ -37,8 +37,8 @@ function TodoCard({todo,id,onUpdate}) {
       setError('')
     }
     else{
-      setError("fields should not be empty")
-      
+      setError("erorr")
+      setOpen(false)
     }
      }
 
@@ -70,7 +70,7 @@ function TodoCard({todo,id,onUpdate}) {
       
     
 <div style={divstyle}>
-      {error && <h4>{error}</h4>}
+      {error ? <h4></h4>}
 <Input value ={updateText} placeholder={todo.todo.todo}  margin="normal" onChange={e =>setUpdateText(e.target.value)} style={input}/>
 <Input value ={updateDate} placeholder={todo.todo.Date}  onChange={e =>setUpdateDate(e.target.value)} type="datetime-local" style={input}/>
 <Button variant="contained" color="secondary" onClick={e=>setOpen(false)} style={button}>close</Button>

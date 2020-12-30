@@ -51,7 +51,7 @@ const logout = () => {
     return (
         <div className="todo__app">
         <IconButton style={{float:'right'}} onClick={logout}>logout<ExitToAppIcon/></IconButton>
-            <div className="input__feild">
+            <div>
               <h1 className="text">Todo App</h1>
               {error && <Alert severity="error">{error}</Alert>}
               <form style={{width:"70%",margin:'auto'}}>
@@ -107,8 +107,6 @@ const logout = () => {
             }
             
             </div>
-            <br/>
-            <br/>
         </div>
     )
 }

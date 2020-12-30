@@ -29,7 +29,7 @@ function TodoCard({todo,id,onUpdate}) {
        db.collection('todos').doc(todo.id).set({
         todo:updateText,
         Date:updateDate,
-        timestamp:Date.now()
+        timestamp:new Date()
      
 
      },{merge:true})
@@ -37,8 +37,8 @@ function TodoCard({todo,id,onUpdate}) {
       setError('')
     }
     else{
-      setError("fields should not be empty")
-      
+      setError("erorr")
+      setOpen(false)
     }
      }
 
@@ -70,9 +70,9 @@ function TodoCard({todo,id,onUpdate}) {
       
     
 <div style={divstyle}>
-      {error && <h4>{error}</h4>}
+      
 <Input value ={updateText} placeholder={todo.todo.todo}  margin="normal" onChange={e =>setUpdateText(e.target.value)} style={input}/>
-<Input value ={updateDate} placeholder={todo.todo.Date}  onChange={e =>setUpdateDate(e.target.value)} type="datetime-local" style={input}/>
+<Input value ={updateDate} placeholder={todo.todo.Date}  onChange={e =>setUpdateDate(e.target.value)} type="date" style={input}/>
 <Button variant="contained" color="secondary" onClick={e=>setOpen(false)} style={button}>close</Button>
 <Button variant="contained" color="secondary" onClick={updateTodo} style={button}>update</Button>
 </div>
@@ -80,11 +80,11 @@ function TodoCard({todo,id,onUpdate}) {
 </Modal>
         <Card style={{display:'flex',justifyContent:'space-between',margin:'2rem',}}>
         
-        <div>
+        <div style={{margin:'2rem'}}>
         <List>
-        <h3  style={{justifySelf:'center'}}> posted at:{new Date(todo.todo.timestamp).toTimeString()} </h3>
+        <h3> posted at:{new Date(todo.todo.timestamp).toTimeString()} </h3>
         {console.log(new Date(todo.todo.timestamp).toTimeString(),"tms")}
-        <ListItem >
+        <ListItem style={{alignItems:'center'}}>
           <ListItemText primary={todo.todo.todo} secondary={todo.todo.Date} />
           </ListItem> 
       </List>

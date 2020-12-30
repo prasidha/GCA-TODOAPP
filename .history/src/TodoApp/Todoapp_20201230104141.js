@@ -108,7 +108,6 @@ const logout = () => {
             
             </div>
             <br/>
-            <br/>
         </div>
     )
 }

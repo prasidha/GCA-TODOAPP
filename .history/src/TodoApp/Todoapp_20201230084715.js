@@ -51,7 +51,7 @@ const logout = () => {
     return (
         <div className="todo__app">
         <IconButton style={{float:'right'}} onClick={logout}>logout<ExitToAppIcon/></IconButton>
-            <div className="input__feild">
+            <div>
               <h1 className="text">Todo App</h1>
               {error && <Alert severity="error">{error}</Alert>}
               <form style={{width:"70%",margin:'auto'}}>
@@ -65,20 +65,24 @@ const logout = () => {
               value={inputs}
               onChange={(e)=>{setInputs(e.target.value)}}
               autoFocus
-              InputLabelProps={{
-                shrink: true,
-              }}
             />
-          
             <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="date"
+              label="Select your day"
+              type="date"
+              value={date}
+              onChange={(e)=>{setDate(e.target.value)}}
+            />
+            <TextField
+            id="datetime-local"
             label="Select your day and time"
             type="datetime-local"
             defaultValue="2017-05-24T10:30"
-            onChange={(e)=>{setDate(e.target.value)}}
-            value={date}
+      
             InputLabelProps={{
               shrink: true,
             }}
@@ -107,8 +111,6 @@ const logout = () => {
             }
             
             </div>
-            <br/>
-            <br/>
         </div>
     )
 }

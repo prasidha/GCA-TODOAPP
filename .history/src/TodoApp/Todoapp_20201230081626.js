@@ -19,7 +19,7 @@ function Todoapp({user}) {
         db.collection("todos").add({
             todo:inputs,
             Date:date,
-            timestamp:Date.now()
+            timestamp:new Date()
        })
        setError("")
        setInputs("");
@@ -51,7 +51,7 @@ const logout = () => {
     return (
         <div className="todo__app">
         <IconButton style={{float:'right'}} onClick={logout}>logout<ExitToAppIcon/></IconButton>
-            <div className="input__feild">
+            <div>
               <h1 className="text">Todo App</h1>
               {error && <Alert severity="error">{error}</Alert>}
               <form style={{width:"70%",margin:'auto'}}>
@@ -65,24 +65,19 @@ const logout = () => {
               value={inputs}
               onChange={(e)=>{setInputs(e.target.value)}}
               autoFocus
-              InputLabelProps={{
-                shrink: true,
-              }}
             />
-          
             <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            label="Select your day and time"
-            type="datetime-local"
-            defaultValue="2017-05-24T10:30"
-            onChange={(e)=>{setDate(e.target.value)}}
-            value={date}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="date"
+              label="Select your day"
+              type="date"
+              value={date}
+              onChange={(e)=>{setDate(e.target.value)}}
+            />
+   
             <Button variant="contained" fullWidth color="primary"  onClick={addTodos} style={{marginTop:'2rem'}}>Add Todo</Button>
               </form>
             </div>
@@ -107,8 +102,6 @@ const logout = () => {
             }
             
             </div>
-            <br/>
-            <br/>
         </div>
     )
 }
